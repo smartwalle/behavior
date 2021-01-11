@@ -1,12 +1,12 @@
 package behavior
 
-type Status int32
+type Status int8
 
 const (
+	Ready   Status = 0 // 初始状态
 	Success Status = 1 // 成功
 	Failure Status = 2 // 失败
 	Running Status = 3 // 执行中
-	Ready   Status = 4 // 初始状态
 )
 
 type IBehavior interface {

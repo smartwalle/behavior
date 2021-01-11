@@ -15,7 +15,7 @@ func NewCondition(cond ConditionFunc) *Condition {
 }
 
 func (this *Condition) Exec(ctx Context) {
-	if this.cond(ctx) {
+	if this.cond != nil && this.cond(ctx) {
 		this.status = Success
 	} else {
 		this.status = Failure
