@@ -2,7 +2,7 @@ package behavior
 
 // Action 具体行为
 type Action struct {
-	baseBehavior
+	base
 }
 
 func NewAction() *Action {

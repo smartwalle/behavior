@@ -2,7 +2,7 @@ package behavior
 
 // Wait 等待行为
 type Wait struct {
-	compositeBehavior
+	composite
 }
 
 func NewWait() *Wait {

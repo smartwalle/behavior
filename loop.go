@@ -2,7 +2,7 @@ package behavior
 
 // Loop 循环行为
 type Loop struct {
-	compositeBehavior
+	composite
 }
 
 func NewLoop() *Loop {

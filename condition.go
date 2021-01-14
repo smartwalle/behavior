@@ -4,7 +4,7 @@ type ConditionFunc func(Context) bool
 
 // Condition 条件行为
 type Condition struct {
-	baseBehavior
+	base
 	cond ConditionFunc
 }
 
@@ -14,10 +14,12 @@ func NewCondition(cond ConditionFunc) *Condition {
 	return n
 }
 
-func (this *Condition) Exec(ctx Context) {
+func (this *Condition) Reset() {
+}
+
+func (this *Condition) Exec(ctx Context) Status {
 	if this.cond != nil && this.cond(ctx) {
-		this.status = Success
-	} else {
-		this.status = Failure
+		return Success
 	}
+	return Failure
 }
