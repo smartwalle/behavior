@@ -1,4 +1,9 @@
 package behavior
 
-type Context interface {
+type Context struct {
+	target interface{}
+}
+
+func (this *Context) Target() interface{} {
+	return this.target
 }

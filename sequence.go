@@ -18,10 +18,10 @@ func (this *Sequence) Reset() {
 	this.lastRunningIndex = 0
 }
 
-func (this *Sequence) Exec(ctx Context) Status {
+func (this *Sequence) OnExec(ctx *Context) Status {
 	for i := this.lastRunningIndex; i < len(this.children); i++ {
 		var child = this.children[i]
-		var status = child.Exec(ctx)
+		var status = child.OnExec(ctx)
 
 		if status != Success {
 			if status == Running {

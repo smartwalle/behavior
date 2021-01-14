@@ -1,6 +1,6 @@
 package behavior
 
-type ConditionFunc func(Context) bool
+type ConditionFunc func(*Context) bool
 
 // Condition 条件行为
 type Condition struct {
@@ -17,7 +17,7 @@ func NewCondition(cond ConditionFunc) *Condition {
 func (this *Condition) Reset() {
 }
 
-func (this *Condition) Exec(ctx Context) Status {
+func (this *Condition) Exec(ctx *Context) Status {
 	if this.cond != nil && this.cond(ctx) {
 		return Success
 	}

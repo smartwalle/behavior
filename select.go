@@ -18,10 +18,10 @@ func (this *Select) Reset() {
 	this.lastRunningIndex = 0
 }
 
-func (this *Select) Exec(ctx Context) Status {
+func (this *Select) OnExec(ctx *Context) Status {
 	for i := this.lastRunningIndex; i < len(this.children); i++ {
 		var child = this.children[i]
-		var status = child.Exec(ctx)
+		var status = child.OnExec(ctx)
 
 		if status != Failure {
 			if status == Running {
