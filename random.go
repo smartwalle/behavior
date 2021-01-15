@@ -2,7 +2,7 @@ package behavior
 
 // Random 随机行为
 type Random struct {
-	composite
+	Composite
 }
 
 func NewRandom() *Random {

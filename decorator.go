@@ -2,7 +2,7 @@ package behavior
 
 // Decorator 修饰行为
 type Decorator struct {
-	composite
+	Composite
 }
 
 func NewDecorator() *Decorator {

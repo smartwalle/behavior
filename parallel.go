@@ -2,7 +2,7 @@ package behavior
 
 // Parallel 并行行为
 type Parallel struct {
-	composite
+	Composite
 }
 
 func NewParalle() *Parallel {
