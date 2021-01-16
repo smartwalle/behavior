@@ -8,7 +8,7 @@ type Sequence struct {
 	lastRunningIndex int
 }
 
-func NewSequence(children ...IBehavior) *Sequence {
+func NewSequence(children ...Behavior) *Sequence {
 	var n = &Sequence{}
 	n.SetWorker(n)
 	n.children = children
@@ -32,8 +32,4 @@ func (this *Sequence) OnExec(ctx Context) Status {
 		}
 	}
 	return Success
-}
-
-func IF(cond ConditionFunc, child IBehavior) IBehavior {
-	return NewSequence(NewCondition(cond), child)
 }

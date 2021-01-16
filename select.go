@@ -8,7 +8,7 @@ type Select struct {
 	lastRunningIndex int
 }
 
-func NewSelect(children ...IBehavior) *Select {
+func NewSelect(children ...Behavior) *Select {
 	var n = &Select{}
 	n.SetWorker(n)
 	n.children = children

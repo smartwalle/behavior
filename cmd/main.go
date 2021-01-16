@@ -3,15 +3,26 @@ package main
 import (
 	"fmt"
 	"github.com/smartwalle/behavior"
+	"time"
 )
 
 func main() {
-	behavior.IF(func(ctx behavior.Context) bool {
+
+	var node = behavior.IF(func(ctx behavior.Context) bool {
 		if ctx.Target() == nil {
 			return false
 		}
 		return true
-	}, NewPrintAction()).Exec(behavior.NewContext("hha"))
+	}, behavior.NewSequence(
+		behavior.NewWait(time.Second*10),
+		NewPrintAction(),
+	))
+
+	for {
+		fmt.Println(node.Exec(behavior.NewContext("hha")))
+		time.Sleep(time.Second)
+	}
+
 }
 
 type PrintAction struct {

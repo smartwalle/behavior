@@ -9,8 +9,22 @@ const (
 	Error   Status = 4 // 错误
 )
 
-// IWorker 行为执行者接口
-type IWorker interface {
+func (s Status) String() string {
+	switch s {
+	case Success:
+		return "Success"
+	case Failure:
+		return "Failure"
+	case Running:
+		return "Running"
+	case Error:
+		return "Error"
+	}
+	return "Unknown"
+}
+
+// Worker 行为执行者接口
+type Worker interface {
 	// 每一次执行之前都会调用
 	OnEnter(Context)
 
@@ -27,10 +41,10 @@ type IWorker interface {
 	OnExit(Context)
 }
 
-// IBehavior 行为接口
-type IBehavior interface {
+// Behavior 行为接口
+type Behavior interface {
 	// 设置行为的执行者
-	SetWorker(IWorker)
+	SetWorker(Worker)
 
 	// 执行行为，创建行为之后，调用本方法开始执行
 	Exec(Context) Status
@@ -38,11 +52,11 @@ type IBehavior interface {
 
 // base 基础行为
 type base struct {
-	worker    IWorker
+	worker    Worker
 	isRunning bool
 }
 
-func (this *base) SetWorker(b IWorker) {
+func (this *base) SetWorker(b Worker) {
 	this.worker = b
 }
 
@@ -90,7 +104,7 @@ func (this *base) exit(ctx Context) {
 // Composite 组合行为
 type Composite struct {
 	base
-	children []IBehavior
+	children []Behavior
 }
 
 func (this *Composite) OnEnter(Context) {
