@@ -1,7 +1,5 @@
 package behavior
 
-import "fmt"
-
 // Loop 循环执行指定行为。
 // 每一次 Tick 只会执行一次子行为。
 // 当子行为返回 Failure 或者 Error 的时候，返回 Failure 或者 Error，算作一次循环。
@@ -30,7 +28,6 @@ func (this *Loop) OnExec(ctx Context) Status {
 
 	var status = Failure
 	if this.count <= 0 || this.current < this.count {
-		fmt.Println(this.current)
 		status = this.child.Tick(ctx)
 
 		if status == Running {
