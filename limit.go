@@ -24,7 +24,7 @@ func (this *Limit) OnExec(ctx Context) Status {
 	}
 
 	if this.current < this.limit {
-		var status = this.child.Exec(ctx)
+		var status = this.child.Tick(ctx)
 		if status == Success || status == Failure {
 			this.current++
 		}

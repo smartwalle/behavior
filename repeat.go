@@ -28,7 +28,7 @@ func (this *Repeat) OnExec(ctx Context) Status {
 	}
 	var status = Success
 	for this.count <= 0 || this.current < this.count {
-		status = this.child.Exec(ctx)
+		status = this.child.Tick(ctx)
 		if status == Success || status == Failure {
 			this.current++
 		} else {

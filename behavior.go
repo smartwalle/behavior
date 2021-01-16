@@ -47,7 +47,7 @@ type Behavior interface {
 	SetWorker(Worker)
 
 	// 执行行为，创建行为之后，调用本方法开始执行
-	Exec(Context) Status
+	Tick(Context) Status
 }
 
 // base 基础行为
@@ -61,7 +61,7 @@ func (this *base) SetWorker(b Worker) {
 }
 
 // Exec 开始执行行为
-func (this *base) Exec(ctx Context) Status {
+func (this *base) Tick(ctx Context) Status {
 	this.enter(ctx)
 
 	if this.isRunning == false {
