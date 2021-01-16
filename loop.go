@@ -1,7 +1,7 @@
 package behavior
 
 // Loop 循环执行指定行为。
-// 每一次 Tick 只会执行一次子行为。
+// 每次 Tick 只会执行一次子行为。
 // 当子行为返回 Failure 或者 Error 的时候，返回 Failure 或者 Error，算作一次循环。
 // 当子行为返回 Success 算作一次循环，如果不是最后一次循环，会返回 Running，以表示当前行为正在执行中，如果是最后一次循环，则返回 Success。
 // 当子行为返回 Running 的时候，下次 Tick 会从上次中止的次数开始继续执行。
