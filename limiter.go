@@ -1,9 +1,9 @@
 package behavior
 
-// Limiter 限定指定行为的执行次数
-// 限定子行为的执行次数，达到限定次数之后，返回 Failure，否则返回子行为的执行结果
-// 子行为返回 Success 或者 Failure，算作一次执行
-// count 参数必须大于 0
+// Limiter 限定指定行为的执行次数。
+// 限定子行为的执行次数，达到限定次数之后，返回 Failure，否则返回子行为的执行结果。
+// 子行为返回 Success 或者 Failure，算作一次执行。
+// count 参数必须大于 0。
 type Limiter struct {
 	Decorator
 	limit   int
