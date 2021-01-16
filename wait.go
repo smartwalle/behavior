@@ -3,16 +3,17 @@ package behavior
 import "time"
 
 // Wait 等待行为
+// 类似于 Sleep，等待一定的时间之后，返回 Success，否则返回 Running
 type Wait struct {
 	Action
-	delay time.Duration
-	start time.Time
+	duration time.Duration
+	start    time.Time
 }
 
-func NewWait(delay time.Duration) *Wait {
+func NewWait(duration time.Duration) *Wait {
 	var n = &Wait{}
 	n.SetWorker(n)
-	n.delay = delay
+	n.duration = duration
 	return n
 }
 
@@ -21,7 +22,7 @@ func (this *Wait) OnOpen(ctx Context) {
 }
 
 func (this *Wait) OnExec(ctx Context) Status {
-	if time.Now().Before(this.start.Add(this.delay)) {
+	if time.Now().Before(this.start.Add(this.duration)) {
 		return Running
 	}
 	return Success

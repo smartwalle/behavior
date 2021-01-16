@@ -14,13 +14,13 @@ func main() {
 		}
 		return true
 	}, behavior.NewSequence(
-		behavior.NewWait(time.Second*10),
-		NewPrintAction(),
+		behavior.NewLimiter(2, NewPrintAction()),
 	))
 
 	for {
 		fmt.Println(node.Exec(behavior.NewContext("hha")))
 		time.Sleep(time.Second)
+		fmt.Println("---")
 	}
 
 }
