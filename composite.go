@@ -1,6 +1,6 @@
 package behavior
 
-// Composite 组合行为
+// Composite 组合行为。
 type Composite struct {
 	base
 	children []Behavior
