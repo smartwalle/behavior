@@ -14,7 +14,7 @@ func main() {
 		}
 		return true
 	}, behavior.NewSequence(
-		behavior.NewLimiter(2, NewPrintAction()),
+		behavior.NewLimit(2, NewPrintAction()),
 	))
 
 	for {
