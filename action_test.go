@@ -49,8 +49,23 @@ func NewFailureAction() *FailureAction {
 	return n
 }
 
-func (this *FailureAction) OnTick(ctx behavior.Context) behavior.Status {
+func (this *FailureAction) OnExec(ctx behavior.Context) behavior.Status {
 	return behavior.Failure
+}
+
+// RunningAction
+type RunningAction struct {
+	behavior.Action
+}
+
+func NewRunningAction() *RunningAction {
+	var n = &RunningAction{}
+	n.SetWorker(n)
+	return n
+}
+
+func (this *RunningAction) OnExec(ctx behavior.Context) behavior.Status {
+	return behavior.Running
 }
 
 // AddAction

@@ -2,12 +2,12 @@ package behavior
 
 import "time"
 
-// Wait 等待行为
+// Wait 等待行为。
 // 类似于 Sleep，等待一定的时间之后，返回 Success，否则返回 Running
 type Wait struct {
 	Action
 	duration time.Duration
-	start    time.Time
+	nextTime time.Time
 }
 
 func NewWait(duration time.Duration) *Wait {
@@ -18,11 +18,11 @@ func NewWait(duration time.Duration) *Wait {
 }
 
 func (this *Wait) OnOpen(ctx Context) {
-	this.start = time.Now()
+	this.nextTime = time.Now().Add(this.duration)
 }
 
 func (this *Wait) OnExec(ctx Context) Status {
-	if time.Now().Before(this.start.Add(this.duration)) {
+	if time.Now().Before(this.nextTime) {
 		return Running
 	}
 	return Success

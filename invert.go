@@ -1,6 +1,6 @@
 package behavior
 
-// Invert 倒置行为。
+// Invert 倒置子行为结果。
 // 对子节点的返回结果取“非”，即子节点返回 Success 则该节点返回 Failure，子节点返回 Failure 则该节点返回 Success。
 type Invert struct {
 	Decorator
