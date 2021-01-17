@@ -1,25 +1,25 @@
 package behavior
 
-// Limiter 限定子行为的执行次数。
+// Limit 限定子行为的执行次数。
 // 每次 Tick 只会执行一次子行为。
 // 限定子行为的执行次数，达到限定次数之后，返回 Failure，否则返回子行为的执行结果。
 // 子行为返回 Success 或者 Failure，算作一次执行。
 // count 参数必须大于 0。
-type Limiter struct {
+type Limit struct {
 	Decorator
 	limit   int
 	current int
 }
 
-func NewLimiter(limit int, child Behavior) *Limiter {
-	var n = &Limiter{}
+func NewLimit(limit int, child Behavior) *Limit {
+	var n = &Limit{}
 	n.SetWorker(n)
 	n.limit = limit
 	n.child = child
 	return n
 }
 
-func (this *Limiter) OnExec(ctx Context) Status {
+func (this *Limit) OnExec(ctx Context) Status {
 	if this.child == nil || this.limit <= 0 {
 		return Failure
 	}
