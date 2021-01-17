@@ -25,7 +25,7 @@ func TestNewLoop(t *testing.T) {
 	}
 
 	// 执行完一轮循环之后，又开始下一轮循环
-	// 由于不重围结果，所以值会继续递增，状态应该为 Running
+	// 由于不重置结果，所以值会继续递增，状态应该为 Running
 	status = n.Tick(nil)
 	if add.value != 4 && status != behavior.Running {
 		t.Fatal("执行结果应该为 2，状态为 Running")
