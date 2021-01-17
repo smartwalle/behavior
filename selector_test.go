@@ -5,11 +5,11 @@ import (
 	"testing"
 )
 
-func TestNewPrioritySelect(t *testing.T) {
+func TestNewPrioritySelector(t *testing.T) {
 	// 执行第一个子行为
 	var ctx = &SelectContext{}
 	ctx.Value = "2"
-	var n = behavior.NewPrioritySelect(
+	var n = behavior.NewPrioritySelector(
 		NewSelectA(1, "1"),
 		NewSelectA(2, "2"),
 	)
@@ -55,10 +55,10 @@ func (this *SelectA) OnExec(ctx behavior.Context) behavior.Status {
 	return behavior.Failure
 }
 
-func TestNewNonPrioritySelect(t *testing.T) {
+func TestNewNonPrioritySelector(t *testing.T) {
 	var ctx = &SelectContext{}
 	ctx.Value = "4"
-	var n = behavior.NewNonPrioritySelect(
+	var n = behavior.NewNonPrioritySelector(
 		NewSelectA(1, "1"),
 		NewSelectA(2, "2"),
 		NewSelectA(3, "3"),

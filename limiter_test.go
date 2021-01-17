@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-func TestNewLimit(t *testing.T) {
-	var n = behavior.NewLimit(3, NewSuccessAction())
+func TestNewLimiter(t *testing.T) {
+	var n = behavior.NewLimiter(3, NewSuccessAction())
 	var status = n.Tick(nil)
 	if status != behavior.Success {
 		t.Fatal("期望结果为 Success")
