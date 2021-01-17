@@ -1,11 +1,10 @@
 package behavior
 
-import (
-	"time"
-)
+import "time"
 
 // Delay 延迟执行子行为。
 // 等待一定的时间之后执行子行为并返回子行为的执行结果，否则返回 Running。
+// 每一次执行完子行为之后，会重新计算下一次执行时间。
 type Delay struct {
 	Decorator
 	duration time.Duration
