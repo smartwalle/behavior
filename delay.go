@@ -9,7 +9,7 @@ import (
 type Delay struct {
 	Decorator
 	duration time.Duration
-	start    time.Time
+	nextTime time.Time
 }
 
 func NewDelay(duration time.Duration, child Behavior) *Delay {
@@ -21,11 +21,11 @@ func NewDelay(duration time.Duration, child Behavior) *Delay {
 }
 
 func (this *Delay) OnOpen(ctx Context) {
-	this.start = time.Now()
+	this.nextTime = time.Now().Add(this.duration)
 }
 
 func (this *Delay) OnExec(ctx Context) Status {
-	if time.Now().Before(this.start.Add(this.duration)) {
+	if time.Now().Before(this.nextTime) {
 		return Running
 	}
 	return this.child.Tick(ctx)
