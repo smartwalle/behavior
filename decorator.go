@@ -13,7 +13,7 @@ func (this *Decorator) OnOpen(Context) {
 }
 
 func (this *Decorator) OnExec(Context) Status {
-	return Error
+	return Failure
 }
 
 func (this *Decorator) OnClose(Context) {

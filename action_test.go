@@ -38,6 +38,7 @@ func (this *SuccessAction) OnExec(ctx behavior.Context) behavior.Status {
 	return behavior.Success
 }
 
+// FailureAction
 type FailureAction struct {
 	behavior.Action
 }

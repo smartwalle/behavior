@@ -21,7 +21,7 @@ func NewLimit(limit int, child Behavior) *Limit {
 
 func (this *Limit) OnExec(ctx Context) Status {
 	if this.child == nil || this.limit <= 0 {
-		return Error
+		return Failure
 	}
 
 	if this.current < this.limit {

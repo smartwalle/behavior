@@ -24,9 +24,6 @@ func (this *Repeat) OnOpen(ctx Context) {
 }
 
 func (this *Repeat) OnExec(ctx Context) Status {
-	if this.child == nil {
-		return Error
-	}
 	var status = Success
 	for this.count <= 0 || this.current < this.count {
 		status = this.child.Tick(ctx)

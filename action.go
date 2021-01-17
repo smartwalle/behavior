@@ -12,7 +12,7 @@ func (this *Action) OnOpen(Context) {
 }
 
 func (this *Action) OnExec(Context) Status {
-	return Error
+	return Failure
 }
 
 func (this *Action) OnClose(Context) {

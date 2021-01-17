@@ -1,12 +1,14 @@
 package behavior
 
+// http://www.aisharing.com/archives/90
+// https://www.cnblogs.com/hammerc/p/5044815.html
+
 type Status int8
 
 const (
 	Success Status = 1 // 成功
 	Failure Status = 2 // 失败
 	Running Status = 3 // 执行中
-	Error   Status = 4 // 错误
 )
 
 func (s Status) String() string {
@@ -17,8 +19,6 @@ func (s Status) String() string {
 		return "Failure"
 	case Running:
 		return "Running"
-	case Error:
-		return "Error"
 	}
 	return "Unknown"
 }

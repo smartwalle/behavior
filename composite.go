@@ -13,7 +13,7 @@ func (this *Composite) OnOpen(Context) {
 }
 
 func (this *Composite) OnExec(Context) Status {
-	return Error
+	return Failure
 }
 
 func (this *Composite) OnClose(Context) {
