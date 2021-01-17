@@ -1,5 +1,10 @@
 package behavior
 
+import (
+	"math/rand"
+	"time"
+)
+
 // PrioritySelector 优先选择行为。
 // 每次 Tick 从左到右顺序执行所有子行为，如果一个子行为返回 Success 或者 Running，则返回 Success 或者 Running，类似逻辑或。
 // 如果一个子行为返回 Running 时，会记录这个行为，下次直接从该行为开始执行。
@@ -85,19 +90,31 @@ func (this *NonPrioritySelector) OnExec(ctx Context) Status {
 }
 
 // RandomSelector 随机选择行为。
+// 选择之前，会对子行为进行随机排序，其它逻辑和 PrioritySelector 一致。
+// 如果子行为返回 Success 或者 Failure，下一次执行之前会对子行为进行重新排序。
 type RandomSelector struct {
-	Composite
+	PrioritySelector
+	r *rand.Rand
 }
 
 func NewRandomSelector(children ...Behavior) *RandomSelector {
 	var n = &RandomSelector{}
 	n.SetWorker(n)
+	n.r = rand.New(rand.NewSource(time.Now().Unix()))
 	n.children = children
 	return n
 }
 
-func (this *RandomSelector) OnExec(ctx Context) Status {
-	return Failure
+func (this *RandomSelector) OnOpen(ctx Context) {
+	this.PrioritySelector.OnOpen(ctx)
+	this.rand()
+}
+
+func (this *RandomSelector) rand() {
+	for i := len(this.children) - 1; i > 0; i-- {
+		var rIdx = this.r.Intn(i)
+		this.children[i], this.children[rIdx] = this.children[rIdx], this.children[i]
+	}
 }
 
 // WeightSelector 权重选择行为。
