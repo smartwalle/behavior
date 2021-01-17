@@ -83,3 +83,35 @@ func (this *NonPrioritySelect) OnExec(ctx Context) Status {
 	this.lastSelectIndex = 0
 	return Failure
 }
+
+// RandomSelect 随机选择行为。
+type RandomSelect struct {
+	Composite
+}
+
+func NewRandomSelect(children ...Behavior) *RandomSelect {
+	var n = &RandomSelect{}
+	n.SetWorker(n)
+	n.children = children
+	return n
+}
+
+func (this *RandomSelect) OnExec(ctx Context) Status {
+	return Failure
+}
+
+// WeightSelect 权重选择行为。
+type WeightSelect struct {
+	Composite
+}
+
+func NewWeightSelect(children ...Behavior) *WeightSelect {
+	var n = &WeightSelect{}
+	n.SetWorker(n)
+	n.children = children
+	return n
+}
+
+func (this *WeightSelect) OnExec(ctx Context) Status {
+	return Failure
+}
