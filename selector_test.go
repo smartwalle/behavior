@@ -28,10 +28,6 @@ type SelectContext struct {
 	Value  string
 }
 
-func (this *SelectContext) Target() interface{} {
-	return nil
-}
-
 type SelectA struct {
 	behavior.Action
 	id    int
