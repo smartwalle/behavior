@@ -1,6 +1,7 @@
 package behavior_test
 
 import (
+	"fmt"
 	"github.com/smartwalle/behavior"
 	"testing"
 )
@@ -65,4 +66,39 @@ func TestNewNonPrioritySelector(t *testing.T) {
 	if ctx.ExecId != 4 {
 		t.Fatal("期望值为 4， 实际值为", ctx.ExecId)
 	}
+}
+
+func TestNewWeightSelector(t *testing.T) {
+	var ctx = &SelectContext{}
+	var n = behavior.NewWeightSelector(
+		NewWeightBehavior(10, "1"),
+		NewWeightBehavior(20, "2"),
+		NewWeightBehavior(30, "3"),
+		NewWeightBehavior(40, "4"),
+		NewWeightBehavior(50, "5"),
+	)
+	n.Tick(ctx)
+}
+
+type WeightBehavior struct {
+	behavior.Action
+	weight int
+	value  string
+}
+
+func NewWeightBehavior(w int, value string) *WeightBehavior {
+	var n = &WeightBehavior{}
+	n.SetWorker(n)
+	n.weight = w
+	n.value = value
+	return n
+}
+
+func (this *WeightBehavior) Weight() int {
+	return this.weight
+}
+
+func (this *WeightBehavior) OnExec(ctx behavior.Context) behavior.Status {
+	fmt.Println(this.value)
+	return behavior.Success
 }
