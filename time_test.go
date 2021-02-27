@@ -26,8 +26,8 @@ func TestNewTimeBefore(t *testing.T) {
 	var n = behavior.NewTimeBefore(endTime, NewSuccessAction())
 
 	var status = n.Tick(nil)
-	if status == behavior.Running {
-		t.Fatal("时间范围内，任务结果不应该为 Running")
+	if status != behavior.Success {
+		t.Fatal("时间范围内，任务结果应该为 Success")
 	}
 
 	time.Sleep(time.Second * 2)

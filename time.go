@@ -27,7 +27,7 @@ func (this *TimeAfter) OnExec(ctx Context) Status {
 	return this.child.Tick(ctx)
 }
 
-// TimeBefore 限定子行为在指定时间之内执行。
+// TimeBefore 限定子行为在指定时间之前执行。
 // 在指定时间范围内不限制次数执行子行为，并返回子行为的执行结果，超过时间之后，返回 Failure。
 type TimeBefore struct {
 	Decorator
