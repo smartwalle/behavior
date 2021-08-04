@@ -121,7 +121,7 @@ func (this *RandomSelector) rand() {
 type WeightBehavior interface {
 	Behavior
 
-	// 返回当前行为所占权重值
+	// Weight 返回当前行为所占权重值
 	Weight() int
 }
 
