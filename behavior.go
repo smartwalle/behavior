@@ -44,7 +44,7 @@ type Worker interface {
 // Behavior 行为接口
 type Behavior interface {
 	// SetWorker 设置行为的执行者
-	SetWorker(Worker)
+	//SetWorker(Worker)
 
 	// Tick 执行行为，创建行为之后，调用本方法开始执行
 	Tick(Context) Status
@@ -56,6 +56,7 @@ type base struct {
 	isRunning bool
 }
 
+// SetWorker 设置行为的执行者
 func (this *base) SetWorker(b Worker) {
 	this.worker = b
 }
