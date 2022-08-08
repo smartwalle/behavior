@@ -27,7 +27,7 @@ func (this *UntilFailure) OnExec(ctx Context) Status {
 	var status = this.child.Tick(ctx)
 	this.current++
 
-	if this.count >= 0 && this.current >= this.count {
+	if this.count > 0 && this.current >= this.count {
 		return Failure
 	}
 	if status == Failure {

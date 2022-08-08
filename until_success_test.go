@@ -20,6 +20,6 @@ func TestNewUntilSuccess(t *testing.T) {
 
 	status = n.Tick(nil)
 	if status != behavior.Success {
-		t.Fatal("期望结果为 Failure")
+		t.Fatal("期望结果为 Success")
 	}
 }
